@@ -60,19 +60,39 @@ namespace Product.Controllers
         }
 
 
-
-
-
-        // PUT api/values/5
+        // PUT: api/Todo/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> PutProductItem(long id, ProductItem item)
         {
+            if (id != item.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(item).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
 
-        // DELETE api/values/5
+
+        // DELETE: api/Todo/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> DeleteProductItem(long id)
         {
+            var productItem = await _context.ProductItems.FindAsync(id);
+
+            if (productItem == null)
+            {
+                return NotFound();
+            }
+
+            _context.ProductItems.Remove(productItem);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
+
+       
     }
 }
