@@ -9,14 +9,12 @@ trigger:
 pool:
   vmImage: 'Ubuntu-16.04'
 
-variables:
-  buildConfiguration: 'Release'
-
 steps:
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
-- task: PublishBuildArtifacts@1
+- task: Docker@2
+  displayName: Build and Push
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+    command: buildAndPush
+    containerRegistry: producttestapi
+    repository: product
+    tags: |
+      tag1
