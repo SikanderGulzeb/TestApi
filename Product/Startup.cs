@@ -11,7 +11,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Product.Contracts;
 using Product.Domain.Models;
+using Product.Sevices;
 
 namespace Product
 {
@@ -27,6 +29,7 @@ namespace Product
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IShoppingCartService, ShoppingCartService>();
             services.AddDbContext<ProductContext>(opt =>
               opt.UseInMemoryDatabase("ProductList"));
 

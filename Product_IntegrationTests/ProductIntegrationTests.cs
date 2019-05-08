@@ -1,5 +1,9 @@
+using Newtonsoft.Json;
+using Product.Domain.Models;
 using System;
 using System.Net;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -35,8 +39,22 @@ namespace Product_IntegrationTests
         //Post Method
 
         [Fact]
-        public void Veify_The_Post_method()
+        public async Task Veify_The_Post_methodAsync()
         {
+
+            using (var client = new TestClientProvider().Client)
+            {
+                var response = await client.PostAsync("/api/product"
+                        , new StringContent(
+                        JsonConvert.SerializeObject(new ProductItem { Name = "Decoder", Manufacturer = "Arvato", Price = "100" }),
+                    Encoding.UTF8,
+                    "application/json"));
+
+                response.EnsureSuccessStatusCode();
+
+                Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+            }
+
 
         }
 

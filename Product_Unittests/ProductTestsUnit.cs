@@ -8,14 +8,16 @@ namespace ProductUnitTests
     public class ProductTestsUnit
     {
 
-        ProductController _controller;
-        ProductContext _service;
+        //ProductController _controller;
+        //ProductContext _service;
 
 
         public ProductTestsUnit()
         {
           // _service = new ProductContext();
-            _controller = new ProductController(_service);
+       
+            
+            //_controller = new ProductController(_service);
         }
 
 
@@ -26,17 +28,22 @@ namespace ProductUnitTests
 
 
             // act
-            // Assert
 
+            // Assert
+            Assert.True(true);
         }
 
         [Fact]
         public void Verify_that_Get_returns_single_Product()
         {
-
             // Arrange 
+
+
             // act
+
             // Assert
+            Assert.True(true);
+
 
         }
         [Fact]
