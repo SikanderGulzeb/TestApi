@@ -23,8 +23,9 @@ namespace Product.Controllers
             {
                 // Create a new TodoItem if collection is empty,
                 // which means you can't delete all TodoItems.
-                _context.ProductItems.Add(new ProductItem { Name = "Decoder" });
+                _context.ProductItems.Add(new ProductItem { Name = "Decoder", Manufacturer = "Arvato", Price = "100"  });
                 _context.SaveChanges();
+              
             }
         }
 
