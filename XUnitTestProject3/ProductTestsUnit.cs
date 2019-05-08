@@ -14,7 +14,7 @@ namespace ProductUnitTests
 
         public ProductTestsUnit()
         {
-            _service = new ProductContext();
+          // _service = new ProductContext();
             _controller = new ProductController(_service);
         }
 
